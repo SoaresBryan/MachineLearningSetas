@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle por Reconhecimento Facial</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #fafafa;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        video, img {
+            border: 1px solid #ccc;
+            width: 640px;
+            height: 480px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .instructions {
+            margin: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Controle por Reconhecimento Facial</h1>
+    <div class="instructions" id="instructions">
+        <p>Clique nos botões abaixo para coletar imagens de treinamento:</p>
+        <button onclick="window.location.href='/start_capture/Esquerda'">Capturar Esquerda</button>
+        <button onclick="window.location.href='/start_capture/Direita'">Capturar Direita</button>
+        <button onclick="window.location.href='/start_capture/Cima'">Capturar Cima</button>
+        <button onclick="window.location.href='/start_capture/Baixo'">Capturar Baixo</button>
+        <p>Após capturar todas as direções, clique em Treinar Modelo:</p>
+        <button onclick="window.location.href='/train'">Treinar Modelo</button>
+    </div>
+    <img id="video_feed" src="/video_feed" alt="Video Feed">
+</body>
+</html>
