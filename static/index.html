@@ -31,7 +31,7 @@
 </head>
 <body>
     <h1>Controle por Reconhecimento Facial</h1>
-    <div class="instructions" id="instructions">
+    <div class="instructions">
         <p>Clique nos botões abaixo para coletar imagens de treinamento:</p>
         <button onclick="window.location.href='/start_capture/Esquerda'">Capturar Esquerda</button>
         <button onclick="window.location.href='/start_capture/Direita'">Capturar Direita</button>
@@ -39,6 +39,8 @@
         <button onclick="window.location.href='/start_capture/Baixo'">Capturar Baixo</button>
         <p>Após capturar todas as direções, clique em Treinar Modelo:</p>
         <button onclick="window.location.href='/train'">Treinar Modelo</button>
+        <p>Após treinar o modelo, clique em Iniciar Reconhecimento para começar a controlar as setas:</p>
+        <button onclick="window.location.href='/start_recognition'">Iniciar Reconhecimento</button>
     </div>
     <img id="video_feed" src="/video_feed" alt="Video Feed">
 </body>
