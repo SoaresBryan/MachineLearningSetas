@@ -1,113 +1,67 @@
-# Controle por Reconhecimento Facial
+# Controle de Setas por Comando de Voz
 
-Este projeto é um programa em Python que utiliza aprendizado de máquina para **aprender em tempo real** os movimentos da cabeça (esquerda, cima, baixo e direita) através de fotos capturadas pela webcam. O programa solicita ao usuário que posicione a cabeça em cada direção, coleta as imagens para treinar o modelo e, em seguida, utiliza o modelo treinado para reconhecer os movimentos e executar os comandos correspondentes das setas do teclado.
+Este projeto é uma aplicação web desenvolvida em FastAPI que permite controlar as setas do teclado usando comandos de voz em português. O projeto utiliza reconhecimento de voz para identificar comandos como "esquerda", "direita", "cima" e "baixo" e, em seguida, aciona as teclas correspondentes no teclado.
 
-## Sumário
+## Funcionalidades
 
-- [Pré-requisitos](#pré-requisitos)
-- [Instalação](#instalação)
-- [Execução](#execução)
-- [Uso](#uso)
+- **Reconhecimento de Comandos de Voz**: Reconhece comandos em português para controlar as setas do teclado.
+- **Controle Remoto via Navegador**: Interface web simples para iniciar e parar o reconhecimento de voz.
 
-## Pré-requisitos
+## Requisitos
 
-Antes de começar, certifique-se de ter o seguinte instalado em seu sistema:
-
-- **Python 3.x**
-- **Bibliotecas Python necessárias**:
-  - OpenCV (`opencv-python`)
-  - TensorFlow e Keras (`tensorflow`)
-  - NumPy
-  - Flask
-  - PyAutoGUI
+- Python 3.7+
+- Pip (gerenciador de pacotes do Python)
 
 ## Instalação
 
-Siga os passos abaixo para configurar o ambiente:
-
-1. **Clone o repositório ou faça o download dos arquivos** do projeto para um diretório em seu computador.
-
-2. **Instale as bibliotecas necessárias** executando os seguintes comandos no terminal:
-
+1. Instale as dependências:
    ```bash
-   pip install opencv-python
-   pip install tensorflow
-   pip install numpy
-   pip install flask
-   pip install pyautogui
+   pip install -r requirements.txt
    ```
-
-## Execução
-
-Para executar o programa, siga os passos:
-
-1. **Inicie o servidor Flask**:
-
-   No terminal, navegue até o diretório do `app.py` e execute:
-
-   ```bash
-   python app.py
-   ```
-
-2. **Acesse a aplicação**:
-
-   - Abra um navegador web e acesse `http://localhost:5000/`.
-   - Você deverá ver a página com instruções para capturar as imagens de treinamento.
 
 ## Uso
 
-### 1. Coleta de Imagens para Treinamento
+1. Execute o servidor FastAPI:
+   ```bash
+   uvicorn app:app --host 0.0.0.0 --port 8000
+   ```
 
-- **Capturar imagens para cada direção**:
+2. Abra seu navegador e acesse `http://localhost:8000`. A interface exibirá dois botões:
+   - **Iniciar Reconhecimento de Voz**: Começa o reconhecimento de comandos.
+   - **Parar Reconhecimento de Voz**: Interrompe o reconhecimento de voz.
 
-  - Na página inicial, clique em cada botão para capturar imagens de cada direção.
-  - Ao clicar em um botão (por exemplo, "Capturar Esquerda"), uma janela da webcam será aberta.
-  - **Posicione sua cabeça** na direção solicitada e aguarde a captura das imagens.
-    - Serão capturadas **50 imagens automaticamente**.
-  - **Feche a janela** após a conclusão da captura.
-  - Repita o processo para todas as direções: **Esquerda**, **Direita**, **Cima** e **Baixo**.
+3. Fale os comandos "esquerda", "direita", "cima" ou "baixo" para controlar as setas do teclado.
 
-### 2. Treinamento do Modelo
+## Estrutura do Código
 
-- **Treinar o modelo com as imagens capturadas**:
+- **app.py**: Arquivo principal que configura o servidor FastAPI, rotas e lógica de reconhecimento de voz.
+- **voice_control**: Função principal que captura o áudio, converte para texto e executa os comandos de acordo com o reconhecimento de voz.
+- **Interface Web**: Uma página HTML simples é retornada na rota principal (`/`), permitindo iniciar e parar o reconhecimento de voz.
 
-  - Após coletar as imagens para todas as direções, clique no botão **"Treinar Modelo"**.
-  - O modelo será treinado em segundo plano (pode levar alguns minutos).
-  - Aguarde até que o treinamento seja concluído.
-  - A página será atualizada automaticamente para informar que o modelo foi treinado.
+## Exemplo de Comandos
 
-### 3. Utilização do Programa
+Ao dizer os comandos em voz alta, as setas do teclado serão acionadas conforme a palavra-chave detectada:
 
-- **Controle por movimentos da cabeça**:
+- **"Esquerda"**: Pressiona a seta para a esquerda.
+- **"Direita"**: Pressiona a seta para a direita.
+- **"Cima"**: Pressiona a seta para cima.
+- **"Baixo"**: Pressiona a seta para baixo.
 
-  - Após o treinamento, a página exibirá o vídeo da webcam em tempo real.
-  - **Movimente sua cabeça** nas direções **Esquerda**, **Direita**, **Cima** ou **Baixo**.
-  - O programa reconhecerá a direção e enviará o comando correspondente da seta do teclado.
-  - Você pode testar abrindo um aplicativo que responda às teclas de seta (por exemplo, um jogo ou o navegador).
+## Dependências
 
-## Observações
+O projeto utiliza as seguintes bibliotecas:
 
-- **Webcam**:
+- `speechrecognition`: Para reconhecer comandos de voz.
+- `pyautogui`: Para simular as teclas de seta.
+- `fastapi`: Para criar a API.
+- `uvicorn`: Servidor ASGI para rodar a aplicação FastAPI.
 
-  - Certifique-se de que a webcam está funcionando corretamente e não está sendo utilizada por outro aplicativo.
+## Contribuição
 
-- **Iluminação**:
+Se desejar contribuir com o projeto, sinta-se à vontade para abrir um pull request ou relatar problemas.
 
-  - O desempenho é melhor em ambientes bem iluminados.
-  - Evite luz de fundo intensa ou sombras no rosto.
+## Licença
 
-- **Precisão**:
-
-  - Dependendo das condições de iluminação e da qualidade da câmera, a precisão pode variar.
-  - Se o reconhecimento não estiver preciso, considere coletar mais imagens de treinamento.
-
-- **Interrupção**:
-
-  - Para interromper o programa, pressione `Ctrl+C` no terminal para parar o servidor Flask.
-
----
-
-**Esperamos que este programa seja útil! Se tiver sugestões ou melhorias, sinta-se à vontade para contribuir.**
-
----
+Este projeto está licenciado sob a [MIT License](LICENSE).
+```
 

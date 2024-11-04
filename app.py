@@ -23,7 +23,7 @@ def voice_control():
         print("Ouvindo...")
         with microphone as source:
             try:
-                audio = recognizer.listen(source, timeout=5)  # Escuta com um tempo limite de 5 segundos
+                audio = recognizer.listen(source, timeout=1)  # Escuta com um tempo limite de 5 segundos
                 command = recognizer.recognize_google(audio, language="pt-BR").lower()  # Converte o áudio para texto
                 
                 print(f"Comando reconhecido: {command}")

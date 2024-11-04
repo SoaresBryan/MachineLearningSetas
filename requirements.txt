@@ -1,5 +1,4 @@
-OpenCV 
-Dlib
-NumPy
-PyAutoGUI
-Flask
+speechrecognition==3.11.0
+pyautogui==0.9.54
+fastapi==0.111.0
+uvicorn==0.29.0
